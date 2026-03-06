@@ -798,18 +798,31 @@
   const splashLogo = document.getElementById('splashLogo');
   const splashTag = document.querySelector('.splash-tag');
 
-  setTimeout(() => {
-    splashLogo.classList.add('show');
-    splashTag.classList.add('show');
-  }, 150);
-
-  setTimeout(() => {
+  function revealPage() {
     splash.classList.add('hide');
     document.querySelector('.page').classList.add('ready');
     document.getElementById('cursor').classList.add('ready');
     document.getElementById('ring').classList.add('ready');
     document.querySelector('.scroll-indicator').classList.add('ready');
-  }, 2400);
+  }
+
+  function startSplash() {
+    splashLogo.classList.add('show');
+    splashTag.classList.add('show');
+    setTimeout(revealPage, 2000);
+  }
+
+  // Failsafe — révèle la page dans tous les cas après 3s
+  const failsafe = setTimeout(revealPage, 3000);
+
+  if (splashLogo.complete) {
+    startSplash();
+    clearTimeout(failsafe);
+    setTimeout(revealPage, 2000);
+  } else {
+    splashLogo.addEventListener('load', () => { clearTimeout(failsafe); startSplash(); });
+    splashLogo.addEventListener('error', () => { clearTimeout(failsafe); revealPage(); });
+  }
 
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
