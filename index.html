@@ -446,6 +446,130 @@
     will-change: transform;
   }
 
+  /* ── SECTION WEB ── */
+  #web {
+    padding-bottom: 80px;
+  }
+
+  .web-content {
+    padding: 0 20px;
+  }
+
+  .web-hero {
+    margin-bottom: 60px;
+  }
+
+  .web-eyebrow {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 24px;
+  }
+
+  .web-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+
+  .web-title em {
+    font-style: italic;
+    color: var(--grey);
+    font-size: 1.1em;
+  }
+
+  .web-body {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 40px;
+    align-items: start;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 40px;
+    margin-bottom: 48px;
+  }
+
+  .web-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--grey);
+  }
+
+  .web-manifesto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .web-manifesto p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--black);
+  }
+
+  .web-manifesto-sub {
+    font-style: normal !important;
+    font-size: 11px !important;
+    font-family: 'Space Mono', monospace !important;
+    color: var(--grey) !important;
+    line-height: 1.8 !important;
+  }
+
+  .web-services {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .web-service-item {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .web-service-num {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--grey);
+    font-family: 'Space Mono', monospace;
+    flex-shrink: 0;
+  }
+
+  .web-service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--black);
+    letter-spacing: 0.05em;
+  }
+
+  .web-footer-line {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+  }
+
+  /* Mobile web */
+  @media (max-width: 768px) {
+    .web-body {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
   /* ── SECTION CONTACT ── */
   #contact {
     padding-bottom: 100px;
@@ -631,6 +755,7 @@
       <ul>
         <li><a href="#artwork" class="active" data-section="artwork">Artwork</a></li>
         <li><a href="#motion" data-section="motion">Motion</a></li>
+        <li><a href="#web" data-section="web">Web</a></li>
       </ul>
       <ul>
         <li><a href="#about" data-section="about">About</a></li>
@@ -735,14 +860,67 @@
       </div>
     </section>
 
+    <!-- ── SECTION WEB ── -->
+    <section id="web">
+      <div class="section-label">Web</div>
+      <div class="web-content">
+
+        <div class="web-hero">
+          <span class="web-eyebrow">Web Design &amp; Development</span>
+          <h2 class="web-title">Built from<br>scratch.<br><em>Always.</em></h2>
+        </div>
+
+        <div class="web-body">
+
+          <div class="web-statement">
+            We design and build custom websites for brands and artists who want a real digital presence — not a template.
+          </div>
+
+          <div class="web-manifesto">
+            <p>No Squarespace.<br>No Wix.<br>No shortcuts.</p>
+            <p class="web-manifesto-sub">Just clean code, deliberate design,<br>and full creative control.</p>
+          </div>
+
+          <div class="web-services">
+            <div class="web-service-item">
+              <span class="web-service-num">01</span>
+              <span class="web-service-name">Landing Pages</span>
+            </div>
+            <div class="web-service-item">
+              <span class="web-service-num">02</span>
+              <span class="web-service-name">Portfolio Sites</span>
+            </div>
+            <div class="web-service-item">
+              <span class="web-service-num">03</span>
+              <span class="web-service-name">Artist Pages</span>
+            </div>
+            <div class="web-service-item">
+              <span class="web-service-num">04</span>
+              <span class="web-service-name">Brand Websites</span>
+            </div>
+            <div class="web-service-item">
+              <span class="web-service-num">05</span>
+              <span class="web-service-name">One-Pagers</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="web-footer-line">
+          Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.
+        </div>
+
+      </div>
+    </section>
+
     <!-- ── SECTION CONTACT ── -->
     <section id="contact">
       <div class="section-label">Contact</div>
       <div class="contact-content">
 
         <div>
-          <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
-          <p class="contact-email-small">contact@fromnowhere.net</p>
+          <a href="/cdn-cgi/l/email-protection#0764686973666473476175686a6968706f62756229696273" class="contact-cta">Work with us</a>
+          <p class="contact-email-small"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a7975746e7b796e5a7c68757774756d727f687f34747f6e">[email&#160;protected]</a></p>
         </div>
 
       </div>
@@ -751,7 +929,7 @@
   </main>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const sidebar = document.querySelector('aside');
@@ -919,7 +1097,7 @@
   });
 
   // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver( entries => {
+  const sectionFadeObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
