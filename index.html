@@ -341,7 +341,6 @@
   }
 
   .about-body p {
-    font-family: var(--font-mono);
     font-size: 10px;
     line-height: 1.9;
     color: var(--grey);
@@ -481,7 +480,6 @@
   .web-manifesto-sub {
     font-style: normal;
     font-size: 11px;
-    font-family: var(--font-mono);
     color: var(--grey);
     line-height: 1.8;
   }
@@ -503,7 +501,6 @@
     font-size: 8px;
     letter-spacing: 0.15em;
     color: var(--grey);
-    font-family: var(--font-mono);
     flex-shrink: 0;
   }
 
@@ -913,6 +910,9 @@
     });
   }
 
+  // ── Device detection
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
   // ── Splash screen
   const splash = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
@@ -927,16 +927,17 @@
 
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollBar.style.height = `${pct}%`;
-  });
+  if (!isMobile) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollBar.style.height = `${pct}%`;
+    });
+  }
 
   // ── Parallax (desktop only)
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const parallaxItems = document.querySelectorAll('.grid-item img, .grid-first img');
+  const parallaxItems = isMobile ? [] : document.querySelectorAll('.grid-item img, .grid-first img');
 
   function applyParallax() {
     parallaxItems.forEach(img => {
@@ -947,15 +948,17 @@
     });
   }
 
-  // Override hover scale with parallax
-  document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      el.querySelector('img').style.transition = 'filter 0.5s ease';
+  // Override hover transition with parallax (desktop only)
+  if (!isMobile) {
+    document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.querySelector('img').style.transition = 'filter 0.5s ease';
+      });
+      el.addEventListener('mouseleave', () => {
+        el.querySelector('img').style.transition = 'filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
     });
-    el.addEventListener('mouseleave', () => {
-      el.querySelector('img').style.transition = 'filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    });
-  });
+  }
 
   if (!isMobile) {
     window.addEventListener('scroll', applyParallax, { passive: true });
@@ -983,18 +986,20 @@
   const ring   = document.getElementById('ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-  });
+  if (!isMobile) {
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = `${mx}px`;
+      cursor.style.top  = `${my}px`;
+    });
+  }
 
   if (!isMobile) {
     (function tick() {
       rx += (mx - rx) * 0.1;
       ry += (my - ry) * 0.1;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
+      ring.style.left = `${rx}px`;
+      ring.style.top  = `${ry}px`;
       requestAnimationFrame(tick);
     })();
   }
@@ -1014,8 +1019,10 @@
     });
   }
 
-  // ── Nav scroll + active
-  document.querySelectorAll('nav a[data-section]').forEach(a => {
+  // ── Nav
+  const navLinks = document.querySelectorAll('nav a[data-section]');
+
+  navLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
       const target = document.getElementById(a.dataset.section);
@@ -1027,7 +1034,6 @@
 
   // ── Active nav on scroll
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[data-section]');
 
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
