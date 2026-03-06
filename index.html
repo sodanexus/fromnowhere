@@ -576,7 +576,7 @@
 
         <div class="about-body">
           <p>From Nowhere is an independent creative collective based in Paris.</p>
-          <p>We are five — from music, photography, marketing and product design. Different worlds, one vision.</p>
+          <p>We are five — from music, photography, marketing, UX design and product design. Different worlds, one vision.</p>
           <p>We craft visual identities, covers, canvas and digital content for brands and artists who refuse the ordinary.</p>
           <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
           <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
@@ -591,8 +591,8 @@
       <div class="contact-content">
 
         <div>
-          <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
-          <p class="contact-email-small">contact@fromnowhere.net</p>
+          <a href="/cdn-cgi/l/email-protection#1e7d71706a7f7d6a5e786c7173707169767b6c7b30707b6a" class="contact-cta">Work with us</a>
+          <p class="contact-email-small"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7e1d11100a1f1d0a3e180c1113101109161b0c1b50101b0a">[email&#160;protected]</a></p>
         </div>
 
       </div>
@@ -601,7 +601,7 @@
   </main>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
   window.addEventListener('scroll', () => {
@@ -738,15 +738,4 @@
   });
 
   // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.05 });
-
-  document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
-</script>
-</body>
-</html>
+  const sectionFadeObserver = new IntersectionObserver(
