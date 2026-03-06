@@ -50,7 +50,6 @@
   #splash.hide {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
   }
   #splash img {
     width: 160px;
@@ -190,6 +189,7 @@
     overflow: hidden;
     cursor: none;
     margin-bottom: 20px;
+    position: relative;
   }
   .grid-first img {
     width: 100%;
@@ -278,12 +278,6 @@
     top: 0; left: 0;
     width: 100%; height: 100%;
     border: none;
-  }
-  .video-wrapper video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
   }
   .video-placeholder {
     position: absolute;
@@ -513,12 +507,6 @@
     transition: height 0.1s linear;
   }
 
-  /* ── SECTION FADE ── */
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   /* ── TYPEWRITER NAV ── */
   nav ul li a .char {
     display: inline-block;
@@ -645,26 +633,27 @@
 
   <main>
 
+
     <section id="artwork">
       <div class="section-label">Artwork</div>
       <div class="grid">
-        <a href="javascript:void(0)" class="grid-first">
+        <a href="#" class="grid-first">
           <img src="1.jpg" alt="Projet 1">
           <div class="project-name"><span>Project 01</span></div>
         </a>
         <div class="grid-cols">
           <div class="grid-col">
-            <a href="javascript:void(0)" class="grid-item"><img src="2.jpg" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="4.jpg" alt="Projet 4"><div class="project-name"><span>Project 04</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="7.jpg" alt="Projet 7"><div class="project-name"><span>Project 07</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="8.jpg" alt="Projet 8"><div class="project-name"><span>Project 08</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="10.jpg" alt="Projet 10"><div class="project-name"><span>Project 10</span></div></a>
+            <a href="#" class="grid-item"><img src="2.jpg" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></a>
+            <a href="#" class="grid-item"><img src="4.jpg" alt="Projet 4"><div class="project-name"><span>Project 04</span></div></a>
+            <a href="#" class="grid-item"><img src="7.jpg" alt="Projet 7"><div class="project-name"><span>Project 07</span></div></a>
+            <a href="#" class="grid-item"><img src="8.jpg" alt="Projet 8"><div class="project-name"><span>Project 08</span></div></a>
+            <a href="#" class="grid-item"><img src="10.jpg" alt="Projet 10"><div class="project-name"><span>Project 10</span></div></a>
           </div>
           <div class="grid-col">
-            <a href="javascript:void(0)" class="grid-item"><img src="3.jpg" alt="Projet 3"><div class="project-name"><span>Project 03</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="5.jpg" alt="Projet 5"><div class="project-name"><span>Project 05</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="6.jpg" alt="Projet 6"><div class="project-name"><span>Project 06</span></div></a>
-            <a href="javascript:void(0)" class="grid-item"><img src="9.jpg" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></a>
+            <a href="#" class="grid-item"><img src="3.jpg" alt="Projet 3"><div class="project-name"><span>Project 03</span></div></a>
+            <a href="#" class="grid-item"><img src="5.jpg" alt="Projet 5"><div class="project-name"><span>Project 05</span></div></a>
+            <a href="#" class="grid-item"><img src="6.jpg" alt="Projet 6"><div class="project-name"><span>Project 06</span></div></a>
+            <a href="#" class="grid-item"><img src="9.jpg" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></a>
           </div>
         </div>
       </div>
@@ -692,20 +681,6 @@
           <div class="video-wrapper">
             <div class="video-placeholder"><div class="play-icon"></div><span>Video 04</span></div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-label">About</div>
-      <div class="about-content">
-        <h2 class="about-title">We create<br>from <em>nowhere.</em></h2>
-        <div class="about-body">
-          <p>From Nowhere is an independent creative collective based in Paris.</p>
-          <p>We are five — from music, photography, marketing, UX design and product design. Different worlds, one vision.</p>
-          <p>We craft visual identities, covers, canvas, web design and digital content for brands and artists who refuse the ordinary.</p>
-          <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
-          <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
         </div>
       </div>
     </section>
@@ -740,6 +715,20 @@
             <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
             <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-label">About</div>
+      <div class="about-content">
+        <h2 class="about-title">We create<br>from <em>nowhere.</em></h2>
+        <div class="about-body">
+          <p>From Nowhere is an independent creative collective based in Paris.</p>
+          <p>We are five — from music, photography, marketing, UX design and product design. Different worlds, one vision.</p>
+          <p>We craft visual identities, covers, canvas, web design and digital content for brands and artists who refuse the ordinary.</p>
+          <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
+          <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
         </div>
       </div>
     </section>
@@ -782,30 +771,28 @@
   splashTag.classList.add('show');
   setTimeout(() => splash.classList.add('hide'), 2000);
 
+  // ── isMobile
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
-  window.addEventListener('scroll', () => {
+  if (!isMobile) window.addEventListener('scroll', () => {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
     scrollBar.style.height = `${pct}%`;
   }, { passive: true });
 
-  // ── isMobile
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-  // ── Parallax
-  const parallaxItems = isMobile ? [] : document.querySelectorAll('.grid-item img, .grid-first img');
-
-  function applyParallax() {
-    parallaxItems.forEach(img => {
-      const rect = img.closest('.grid-item, .grid-first').getBoundingClientRect();
-      const center = rect.top + rect.height / 2;
-      const offset = (window.innerHeight / 2 - center) * 0.08;
-      img.style.transform = `translateY(${offset}px) scale(1.1)`;
-    });
-  }
-
+  // ── Parallax (desktop uniquement)
   if (!isMobile) {
+    const parallaxItems = document.querySelectorAll('.grid-item img, .grid-first img');
+    const applyParallax = () => {
+      parallaxItems.forEach(img => {
+        const rect = img.closest('.grid-item, .grid-first').getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const offset = (window.innerHeight / 2 - center) * 0.08;
+        img.style.transform = `translateY(${offset}px) scale(1.1)`;
+      });
+    };
     document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
       el.addEventListener('mouseenter', () => {
         el.querySelector('img').style.transition = 'filter 0.5s ease';
@@ -817,6 +804,7 @@
     window.addEventListener('scroll', applyParallax, { passive: true });
     applyParallax();
   }
+
 
   // ── Typewriter nav
   let globalDelay = 200;
