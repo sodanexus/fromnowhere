@@ -194,11 +194,13 @@
     overflow: hidden;
     cursor: none;
     margin-bottom: 20px;
+    height: 480px;
   }
   .grid-first img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
   }
 
   .grid-cols {
@@ -217,11 +219,13 @@
     overflow: hidden;
     cursor: none;
     position: relative;
+    height: 280px;
   }
   .grid-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
   }
 
   /* ── SECTION MOTION ── */
@@ -585,16 +589,7 @@
     transition: height 0.1s linear;
   }
 
-  /* ── SECTION FADE ── */
-  section {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* ── SECTION FADE — removed: items handled individually by revealObserver ── */
 
   /* Desktop — hamburger et header mobile cachés */
   .hamburger { display: none; }
@@ -665,9 +660,9 @@
     }
 
     /* Grille 1 colonne */
-    .grid-cols {
-      grid-template-columns: 1fr;
-    }
+    .grid-cols { grid-template-columns: 1fr; }
+    .grid-first { height: 260px; }
+    .grid-item  { height: 200px; }
 
     /* Video grid 1 colonne */
     .video-grid {
@@ -1088,17 +1083,7 @@
     revealObserver.observe(el);
   });
 
-  // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05 });
 
-  document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
 </script>
 </body>
 </html>
