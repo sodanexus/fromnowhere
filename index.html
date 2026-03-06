@@ -19,6 +19,8 @@
     --border: rgba(255,255,255,0.07);
     --black-faint: rgba(245,242,236,0.4);
     --black-subtle: rgba(245,242,236,0.2);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-mono: 'Space Mono', monospace;
   }
 
   html { scroll-behavior: smooth; }
@@ -26,7 +28,7 @@
   body {
     background: var(--white);
     color: var(--black);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
     cursor: none;
   }
 
@@ -317,7 +319,7 @@
   }
 
   .about-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: clamp(52px, 7vw, 110px);
     line-height: 0.95;
@@ -339,7 +341,7 @@
   }
 
   .about-body p {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     line-height: 1.9;
     color: var(--grey);
@@ -347,7 +349,7 @@
 
   .about-body .about-closing {
     grid-column: 1 / -1;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 22px;
     line-height: 1.4;
@@ -371,7 +373,7 @@
     z-index: 2;
   }
   .project-name span {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: 16px;
     letter-spacing: 0.12em;
@@ -430,7 +432,7 @@
   }
 
   .web-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: clamp(56px, 8vw, 120px);
     line-height: 0.92;
@@ -455,7 +457,7 @@
   }
 
   .web-statement {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: 20px;
     line-height: 1.6;
@@ -469,7 +471,7 @@
   }
 
   .web-manifesto p {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 28px;
     line-height: 1.2;
@@ -479,7 +481,7 @@
   .web-manifesto-sub {
     font-style: normal;
     font-size: 11px;
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
     color: var(--grey);
     line-height: 1.8;
   }
@@ -501,12 +503,12 @@
     font-size: 8px;
     letter-spacing: 0.15em;
     color: var(--grey);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
     flex-shrink: 0;
   }
 
   .web-service-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: 18px;
     color: var(--black);
@@ -773,7 +775,7 @@
 
         <div class="video-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/R8o8cWErI5M" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/R8o8cWErI5M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>
 
@@ -929,7 +931,7 @@
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollBar.style.height = pct + '%';
+    scrollBar.style.height = `${pct}%`;
   });
 
   // ── Parallax (desktop only)
@@ -961,10 +963,9 @@
   }
 
   // ── Typewriter nav
-  const navItems = document.querySelectorAll('nav ul li a');
   let globalDelay = 200; // délai de départ global
 
-  navItems.forEach(link => {
+  document.querySelectorAll('nav ul li a').forEach(link => {
     const text = link.textContent;
     link.textContent = '';
     [...text].forEach((char, i) => {
@@ -972,14 +973,9 @@
       span.className = 'char';
       span.textContent = char === ' ' ? '\u00A0' : char;
       link.appendChild(span);
-    });
-
-    // Révèle les lettres une par une
-    [...link.querySelectorAll('.char')].forEach((span, i) => {
       setTimeout(() => span.classList.add('show'), globalDelay + i * 40);
     });
-
-    globalDelay += text.length * 40 + 80; // décale le prochain lien
+    globalDelay += text.length * 40 + 80;
   });
 
   // ── Cursor
@@ -1003,18 +999,20 @@
     })();
   }
 
-  document.querySelectorAll('.grid-item, .grid-first, .video-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '56px';
-      ring.style.height = '56px';
-      ring.style.opacity = '0.3';
+  if (!isMobile) {
+    document.querySelectorAll('.grid-item, .grid-first, .video-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '56px';
+        ring.style.height = '56px';
+        ring.style.opacity = '0.3';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '30px';
+        ring.style.height = '30px';
+        ring.style.opacity = '1';
+      });
     });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '30px';
-      ring.style.height = '30px';
-      ring.style.opacity = '1';
-    });
-  });
+  }
 
   // ── Nav scroll + active
   document.querySelectorAll('nav a[data-section]').forEach(a => {
@@ -1022,7 +1020,7 @@
       e.preventDefault();
       const target = document.getElementById(a.dataset.section);
       if (target) target.scrollIntoView({ behavior: 'smooth' });
-      document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+      navLinks.forEach(x => x.classList.remove('active'));
       a.classList.add('active');
     });
   });
