@@ -577,7 +577,7 @@
         <div class="about-body">
           <p>From Nowhere is an independent creative collective based in Paris.</p>
           <p>We are five — from music, photography, marketing, UX design and product design. Different worlds, one vision.</p>
-          <p>We craft visual identities, covers, canvas and digital content for brands and artists who refuse the ordinary.</p>
+          <p>We craft visual identities, covers, canvas, web design and digital content for brands and artists who refuse the ordinary.</p>
           <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
           <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
         </div>
@@ -738,4 +738,15 @@
   });
 
   // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver(
+  const sectionFadeObserver = new IntersectionObserver( entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
+</script>
+</body>
+</html>
