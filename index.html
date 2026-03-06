@@ -54,6 +54,21 @@
     opacity: 1;
     transform: translateY(0);
   }
+  .splash-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 6vw, 72px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f5f2ec;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .splash-logo-text.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
   #splash .splash-tag {
     font-size: 7px;
     letter-spacing: 0.35em;
@@ -503,7 +518,98 @@
     transition: height 0.1s linear;
   }
 
-  /* Animations */
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+
+    /* Hamburger button */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: fixed;
+      top: 24px; right: 24px;
+      z-index: 500;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--black);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Sidebar mobile — plein écran caché par défaut */
+    aside {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 400;
+      padding: 80px 40px 40px;
+      border-right: none;
+    }
+    aside.open {
+      transform: translateX(0);
+    }
+
+    /* Logo mobile en haut */
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      padding: 0 24px;
+      background: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      z-index: 300;
+    }
+    .mobile-header img {
+      width: 90px;
+    }
+
+    /* Main — pas de margin sidebar */
+    main {
+      margin-left: 0;
+      padding-top: 64px;
+    }
+
+    /* Grille 1 colonne */
+    .grid-cols {
+      grid-template-columns: 1fr;
+    }
+
+    /* Video grid 1 colonne */
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* About title plus petit */
+    .about-title {
+      font-size: clamp(36px, 10vw, 64px);
+    }
+    .about-body {
+      grid-template-columns: 1fr;
+    }
+
+    /* Scroll indicator caché */
+    .scroll-indicator { display: none; }
+
+    /* Splash logo plus petit */
+    #splash img { width: 120px; }
+  }
+
+  /* Desktop — hamburger caché */
+  .hamburger { display: none; }
+  .mobile-header { display: none; }
   .grid-first, .grid-item, .video-item {
     opacity: 0;
     animation: none;
@@ -515,6 +621,18 @@
 <div id="splash">
   <img src="logo.png" alt="From Nowhere" id="splashLogo">
   <span class="splash-tag">Creative Agency</span>
+</div>
+
+<!-- Header mobile -->
+<div class="mobile-header">
+  <img src="logo.png" alt="From Nowhere">
+</div>
+
+<!-- Hamburger -->
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -656,25 +774,42 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.querySelector('aside');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      sidebar.classList.toggle('open');
+    });
+
+    // Ferme le menu au clic sur un lien
+    document.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        sidebar.classList.remove('open');
+      });
+    });
+  }
+
   // ── Splash screen
   const splash = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
   const splashTag = document.querySelector('.splash-tag');
 
-  // Logo apparaît
   setTimeout(() => {
     splashLogo.classList.add('show');
     splashTag.classList.add('show');
-  }, 100);
+  }, 150);
 
-  // Fade out splash + révèle la page
   setTimeout(() => {
     splash.classList.add('hide');
     document.querySelector('.page').classList.add('ready');
     document.getElementById('cursor').classList.add('ready');
     document.getElementById('ring').classList.add('ready');
     document.querySelector('.scroll-indicator').classList.add('ready');
-  }, 2200);
+  }, 2400);
 
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
