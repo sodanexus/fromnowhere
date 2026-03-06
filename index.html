@@ -404,7 +404,40 @@
     will-change: transform;
   }
 
-  /* ── SCROLL INDICATOR ── */
+  /* ── SECTION CONTACT ── */
+  #contact {
+    padding-bottom: 100px;
+  }
+
+  .contact-content {
+    padding: 0 20px;
+  }
+
+  .contact-cta {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--black);
+    border: 1px solid rgba(245,242,236,0.2);
+    padding: 14px 32px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    cursor: none;
+  }
+  .contact-cta:hover {
+    background: transparent;
+    color: var(--black);
+  }
+
+  .contact-email-small {
+    margin-top: 12px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--grey);
+    text-transform: lowercase;
+  }
   .scroll-indicator {
     position: fixed;
     right: 0;
@@ -451,7 +484,7 @@
       </ul>
       <ul>
         <li><a href="#about" data-section="about">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
     </nav>
 
@@ -547,6 +580,19 @@
           <p>We craft visual identities, covers, canvas and digital content for brands and artists who refuse the ordinary.</p>
           <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
           <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION CONTACT ── -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <div class="contact-content">
+
+        <div>
+          <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
+          <p class="contact-email-small">contact@fromnowhere.net</p>
         </div>
 
       </div>
