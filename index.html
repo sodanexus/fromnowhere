@@ -528,6 +528,7 @@
     text-transform: uppercase;
     color: var(--grey);
     padding-right: 4em;
+    flex-shrink: 0;
   }
   @keyframes ticker {
     from { transform: translateX(0); }
@@ -1066,7 +1067,7 @@
   sections.forEach(s => sectionObserver.observe(s));
 
   // ── Scroll reveal — containers only, not images (parallax handles those)
-  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-hero, .web-body, .web-footer-line');
+  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-hero, .web-body');
 
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
