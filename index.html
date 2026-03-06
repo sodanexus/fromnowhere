@@ -371,10 +371,60 @@
     opacity: 1;
   }
 
+  /* ── TYPEWRITER NAV ── */
+  nav ul li a .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  nav ul li a .char.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── GRAYSCALE IMAGES ── */
+  .grid-item img,
+  .grid-first img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .grid-item:hover img,
+  .grid-first:hover img {
+    filter: grayscale(0%);
+  }
+
+  /* ── PARALLAX ── */
+  .grid-item,
+  .grid-first {
+    overflow: hidden;
+  }
+  .grid-item img,
+  .grid-first img {
+    will-change: transform;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-indicator {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 2px;
+    height: 100vh;
+    background: rgba(255,255,255,0.06);
+    z-index: 200;
+  }
+  .scroll-indicator-bar {
+    width: 100%;
+    background: rgba(245,242,236,0.4);
+    height: 0%;
+    transition: height 0.1s linear;
+  }
+
   /* Animations */
   .grid-first, .grid-item, .video-item {
     opacity: 0;
-    animation: none; /* géré par scroll reveal */
+    animation: none;
   }
 </style>
 </head>
@@ -382,6 +432,7 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="ring"></div>
+<div class="scroll-indicator"><div class="scroll-indicator-bar" id="scrollBar"></div></div>
 
 <div class="page">
 
@@ -505,7 +556,61 @@
 </div>
 
 <script>
-  // ── Cursor
+  // ── Scroll indicator
+  const scrollBar = document.getElementById('scrollBar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollBar.style.height = pct + '%';
+  });
+
+  // ── Parallax
+  const parallaxItems = document.querySelectorAll('.grid-item img, .grid-first img');
+
+  function applyParallax() {
+    parallaxItems.forEach(img => {
+      const rect = img.closest('.grid-item, .grid-first').getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const offset = (window.innerHeight / 2 - center) * 0.08;
+      img.style.transform = `translateY(${offset}px) scale(1.1)`;
+    });
+  }
+
+  // Override hover scale with parallax
+  document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      el.querySelector('img').style.transition = 'filter 0.5s ease';
+    });
+    el.addEventListener('mouseleave', () => {
+      el.querySelector('img').style.transition = 'filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+  });
+
+  window.addEventListener('scroll', applyParallax, { passive: true });
+  applyParallax();
+
+  // ── Typewriter nav
+  const navItems = document.querySelectorAll('nav ul li a');
+  let globalDelay = 200; // délai de départ global
+
+  navItems.forEach(link => {
+    const text = link.textContent;
+    link.textContent = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      link.appendChild(span);
+    });
+
+    // Révèle les lettres une par une
+    [...link.querySelectorAll('.char')].forEach((span, i) => {
+      setTimeout(() => span.classList.add('show'), globalDelay + i * 40);
+    });
+
+    globalDelay += text.length * 40 + 80; // décale le prochain lien
+  });
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
