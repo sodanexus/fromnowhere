@@ -514,11 +514,6 @@
   }
 
   /* ── SECTION FADE ── */
-  section {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
   section.visible {
     opacity: 1;
     transform: translateY(0);
@@ -893,7 +888,7 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
 
-  // ── Scroll reveal
+  // ── Scroll reveal (items uniquement, pas les sections)
   const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-hero, .web-body');
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
@@ -912,17 +907,6 @@
     el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
     revealObserver.observe(el);
   });
-
-  // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
 </script>
 </body>
 </html>
