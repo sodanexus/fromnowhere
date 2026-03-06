@@ -513,12 +513,25 @@
   }
 
   .web-footer-line {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .web-ticker-track {
+    display: inline-flex;
+    animation: ticker 12s linear infinite;
+  }
+  .web-ticker-track span {
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--grey);
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
+    padding-right: 4em;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   /* ── SECTION CONTACT ── */
@@ -868,7 +881,12 @@
         </div>
 
         <div class="web-footer-line">
-          Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.
+          <div class="web-ticker-track">
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+          </div>
         </div>
 
       </div>
