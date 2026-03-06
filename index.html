@@ -6,8 +6,24 @@
 <title>FROM NOWHERE — Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  /* ── SKIP TO CONTENT ── */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    padding: 8px 16px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    z-index: 9999;
+  }
+  .skip-link:focus { top: 0; }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -18,7 +34,6 @@
     --surface: #111;
     --border: rgba(255,255,255,0.07);
     --black-faint: rgba(245,242,236,0.4);
-    --black-subtle: rgba(245,242,236,0.2);
     --font-serif: 'Cormorant Garamond', serif;
     --font-mono: 'Space Mono', monospace;
   }
@@ -181,7 +196,21 @@
     margin-bottom: 20px;
   }
 
+  /* ── BUTTON RESET (grid items) ── */
+  button.grid-first,
+  button.grid-item {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    text-align: left;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   /* ── GRILLE ARTWORK ── */
+  #artwork { padding-bottom: 60px; }
   .grid { padding: 0 20px 20px; }
 
   .grid-first {
@@ -317,7 +346,9 @@
 
   /* ── SECTION ABOUT ── */
   #about { padding-bottom: 80px; }
-  .about-content { padding: 0 20px; }
+  .about-content,
+  .web-content,
+  .contact-content { padding: 0 20px; }
 
   .about-title {
     font-family: var(--font-serif);
@@ -355,7 +386,6 @@
 
   /* ── SECTION WEB ── */
   #web { padding-bottom: 80px; }
-  .web-content { padding: 0 20px; }
   .web-hero { margin-bottom: 60px; }
 
   .web-eyebrow {
@@ -408,6 +438,7 @@
     color: var(--black);
   }
   .web-manifesto-sub {
+    font-family: var(--font-mono);
     font-style: normal;
     font-size: 11px;
     color: var(--grey);
@@ -464,7 +495,6 @@
 
   /* ── SECTION CONTACT ── */
   #contact { padding-bottom: 100px; }
-  .contact-content { padding: 0 20px; }
 
   .contact-cta {
     display: inline-block;
@@ -473,7 +503,7 @@
     text-transform: uppercase;
     color: var(--white);
     background: var(--black);
-    border: 1px solid var(--black-subtle);
+    border: 1px solid rgba(245,242,236,0.2);
     padding: 14px 32px;
     text-decoration: none;
     transition: background 0.2s, color 0.2s;
@@ -587,6 +617,8 @@
 </head>
 <body>
 
+<a href="#artwork" class="skip-link">Aller au contenu</a>
+
 <div id="splash">
   <img src="logo.png" alt="From Nowhere" id="splashLogo">
   <span class="splash-tag">Creative Agency</span>
@@ -611,7 +643,7 @@
       <img src="logo.png" alt="From Nowhere">
       <span class="logo-tag">Creative Agency</span>
     </div>
-    <nav>
+    <nav aria-label="Navigation principale">
       <span class="nav-label">Work</span>
       <ul>
         <li><a href="#artwork" class="active" data-section="artwork">Artwork</a></li>
@@ -633,27 +665,26 @@
 
   <main>
 
-
     <section id="artwork">
       <div class="section-label">Artwork</div>
       <div class="grid">
-        <a href="#" class="grid-first">
+        <button type="button" class="grid-first" aria-label="Voir projet 01">
           <img src="1.jpg" alt="Projet 1">
           <div class="project-name"><span>Project 01</span></div>
-        </a>
+        </button>
         <div class="grid-cols">
           <div class="grid-col">
-            <a href="#" class="grid-item"><img src="2.jpg" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></a>
-            <a href="#" class="grid-item"><img src="4.jpg" alt="Projet 4"><div class="project-name"><span>Project 04</span></div></a>
-            <a href="#" class="grid-item"><img src="7.jpg" alt="Projet 7"><div class="project-name"><span>Project 07</span></div></a>
-            <a href="#" class="grid-item"><img src="8.jpg" alt="Projet 8"><div class="project-name"><span>Project 08</span></div></a>
-            <a href="#" class="grid-item"><img src="10.jpg" alt="Projet 10"><div class="project-name"><span>Project 10</span></div></a>
+            <button type="button" class="grid-item" aria-label="Voir projet 02"><img src="2.jpg" loading="lazy" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 04"><img src="4.jpg" loading="lazy" alt="Projet 4"><div class="project-name"><span>Project 04</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 07"><img src="7.jpg" loading="lazy" alt="Projet 7"><div class="project-name"><span>Project 07</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 08"><img src="8.jpg" loading="lazy" alt="Projet 8"><div class="project-name"><span>Project 08</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 10"><img src="10.jpg" loading="lazy" alt="Projet 10"><div class="project-name"><span>Project 10</span></div></button>
           </div>
           <div class="grid-col">
-            <a href="#" class="grid-item"><img src="3.jpg" alt="Projet 3"><div class="project-name"><span>Project 03</span></div></a>
-            <a href="#" class="grid-item"><img src="5.jpg" alt="Projet 5"><div class="project-name"><span>Project 05</span></div></a>
-            <a href="#" class="grid-item"><img src="6.jpg" alt="Projet 6"><div class="project-name"><span>Project 06</span></div></a>
-            <a href="#" class="grid-item"><img src="9.jpg" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></a>
+            <button type="button" class="grid-item" aria-label="Voir projet 03"><img src="3.jpg" loading="lazy" alt="Projet 3"><div class="project-name"><span>Project 03</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 05"><img src="5.jpg" loading="lazy" alt="Projet 5"><div class="project-name"><span>Project 05</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 06"><img src="6.jpg" loading="lazy" alt="Projet 6"><div class="project-name"><span>Project 06</span></div></button>
+            <button type="button" class="grid-item" aria-label="Voir projet 09"><img src="9.jpg" loading="lazy" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></button>
           </div>
         </div>
       </div>
@@ -664,12 +695,12 @@
       <div class="video-grid">
         <div class="video-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube-nocookie.com/embed/R8o8cWErI5M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/R8o8cWErI5M" title="Vidéo From Nowhere 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
           </div>
         </div>
         <div class="video-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube-nocookie.com/embed/d68toBv-wqo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/d68toBv-wqo" title="Vidéo From Nowhere 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
           </div>
         </div>
         <div class="video-item">
@@ -710,8 +741,6 @@
         </div>
         <div class="web-footer-line">
           <div class="web-ticker-track">
-            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
-            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
             <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
             <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
           </div>
@@ -763,13 +792,18 @@
     });
   }
 
+  // ── Sidebar footer links (prevent scroll-to-top)
+  document.querySelectorAll('.sidebar-footer a').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+
   // ── Splash
   const splash    = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
   const splashTag  = document.querySelector('.splash-tag');
-  splashLogo.classList.add('show');
-  splashTag.classList.add('show');
-  setTimeout(() => splash.classList.add('hide'), 2000);
+  if (splashLogo) splashLogo.classList.add('show');
+  if (splashTag) splashTag.classList.add('show');
+  if (splash) setTimeout(() => splash.classList.add('hide'), 2000);
 
   // ── isMobile
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -804,7 +838,6 @@
     window.addEventListener('scroll', applyParallax, { passive: true });
     applyParallax();
   }
-
 
   // ── Typewriter nav
   let globalDelay = 200;
