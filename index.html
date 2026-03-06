@@ -26,6 +26,55 @@
     cursor: none;
   }
 
+  /* ── SPLASH SCREEN ── */
+  #splash {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #splash.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #splash img {
+    width: 160px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  #splash img.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #splash .splash-tag {
+    font-size: 7px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #6a6660;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+  }
+  #splash .splash-tag.show {
+    opacity: 1;
+  }
+
+  /* Page cachée pendant le splash */
+  .page, .cursor, .cursor-ring, .scroll-indicator {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .page.ready, .cursor.ready, .cursor-ring.ready, .scroll-indicator.ready {
+    opacity: 1;
+  }
+
   /* CURSOR */
   .cursor {
     position: fixed;
@@ -463,6 +512,11 @@
 </head>
 <body>
 
+<div id="splash">
+  <img src="logo.png" alt="From Nowhere" id="splashLogo">
+  <span class="splash-tag">Creative Agency</span>
+</div>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="ring"></div>
 <div class="scroll-indicator"><div class="scroll-indicator-bar" id="scrollBar"></div></div>
@@ -591,8 +645,8 @@
       <div class="contact-content">
 
         <div>
-          <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
-          <p class="contact-email-small">contact@fromnowhere.net</p>
+          <a href="/cdn-cgi/l/email-protection#c4a7abaab0a5a7b084a2b6aba9aaabb3aca1b6a1eaaaa1b0" class="contact-cta">Work with us</a>
+          <p class="contact-email-small"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="35565a5b415456417553475a585b5a425d5047501b5b5041">[email&#160;protected]</a></p>
         </div>
 
       </div>
@@ -601,7 +655,27 @@
   </main>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Splash screen
+  const splash = document.getElementById('splash');
+  const splashLogo = document.getElementById('splashLogo');
+  const splashTag = document.querySelector('.splash-tag');
+
+  // Logo apparaît
+  setTimeout(() => {
+    splashLogo.classList.add('show');
+    splashTag.classList.add('show');
+  }, 100);
+
+  // Fade out splash + révèle la page
+  setTimeout(() => {
+    splash.classList.add('hide');
+    document.querySelector('.page').classList.add('ready');
+    document.getElementById('cursor').classList.add('ready');
+    document.getElementById('ring').classList.add('ready');
+    document.querySelector('.scroll-indicator').classList.add('ready');
+  }, 2200);
+
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
   window.addEventListener('scroll', () => {
@@ -738,15 +812,4 @@
   });
 
   // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver( entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.05 });
-
-  document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
-</script>
-</body>
-</html>
+  const sectionFadeObserver = new IntersectionObserver(
