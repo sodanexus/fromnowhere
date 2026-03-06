@@ -19,14 +19,17 @@
     --border: rgba(255,255,255,0.07);
     --black-faint: rgba(245,242,236,0.4);
     --black-subtle: rgba(245,242,236,0.2);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-mono: 'Space Mono', monospace;
   }
 
+  html, body { overflow-x: hidden; }
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--white);
     color: var(--black);
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
     cursor: none;
   }
 
@@ -34,7 +37,6 @@
   #splash {
     position: fixed;
     inset: 0;
-    background: #0a0a0a;
     background: var(--white);
     z-index: 9000;
     display: flex;
@@ -59,22 +61,17 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .splash-logo-text { display: none; } /* unused */
-
   #splash .splash-tag {
     font-size: 7px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: #6a6660;
     color: var(--grey);
     opacity: 0;
     transition: opacity 0.6s ease 0.3s;
   }
-  #splash .splash-tag.show {
-    opacity: 1;
-  }
+  #splash .splash-tag.show { opacity: 1; }
 
-  /* CURSOR */
+  /* ── CURSOR ── */
   .cursor {
     position: fixed;
     width: 8px; height: 8px;
@@ -88,7 +85,6 @@
   .cursor-ring {
     position: fixed;
     width: 30px; height: 30px;
-    border: 1px solid rgba(245,242,236,0.4);
     border: 1px solid var(--black-faint);
     border-radius: 50%;
     pointer-events: none;
@@ -97,7 +93,7 @@
     transition: width 0.3s, height 0.3s, opacity 0.3s;
   }
 
-  /* PAGE LAYOUT */
+  /* ── PAGE LAYOUT ── */
   .page {
     display: flex;
     min-height: 100vh;
@@ -112,17 +108,13 @@
     padding: 40px 28px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgba(255,255,255,0.07);
     border-right: 1px solid var(--border);
     background: var(--white);
     z-index: 100;
   }
 
   .logo { margin-bottom: 52px; }
-  .logo img {
-    width: 120px;
-    display: block;
-  }
+  .logo img { width: 120px; display: block; }
   .logo-tag {
     display: block;
     margin-top: 6px;
@@ -175,6 +167,7 @@
   main {
     margin-left: var(--sidebar);
     flex: 1;
+    min-width: 0;
   }
 
   /* ── SECTION LABEL ── */
@@ -184,15 +177,12 @@
     letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--grey);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
     border-bottom: 1px solid var(--border);
     margin-bottom: 20px;
   }
 
   /* ── GRILLE ARTWORK ── */
-  .grid {
-    padding: 0 20px 20px;
-  }
+  .grid { padding: 0 20px 20px; }
 
   .grid-first {
     display: block;
@@ -204,9 +194,7 @@
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  .grid-first:hover img { transform: scale(1.04); }
 
   .grid-cols {
     display: grid;
@@ -229,14 +217,44 @@
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  .grid-item:hover img { transform: scale(1.04); }
+
+  /* ── GRAYSCALE & PARALLAX ── */
+  .grid-item img,
+  .grid-first img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .grid-item:hover img,
+  .grid-first:hover img { filter: grayscale(0%); }
+
+  /* ── PROJECT NAME HOVER ── */
+  .project-name {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .project-name span {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    color: var(--black);
+    text-transform: uppercase;
+  }
+  .grid-item:hover .project-name,
+  .grid-first:hover .project-name { opacity: 1; }
 
   /* ── SECTION MOTION ── */
-  #motion {
-    padding-bottom: 60px;
-  }
+  #motion { padding-bottom: 60px; }
 
   .video-grid {
     display: grid;
@@ -245,45 +263,31 @@
     padding: 0 20px;
   }
 
-  .video-item {
-    position: relative;
-    cursor: none;
-  }
+  .video-item { position: relative; cursor: none; }
 
-  /* Ratio 16/9 pour les vidéos */
   .video-wrapper {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    background: #111;
     background: var(--surface);
   }
-
   .video-wrapper iframe {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     border: none;
   }
-
-  /* Vidéo locale */
   .video-wrapper video {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
   }
-
-  /* Placeholder vidéo */
   .video-placeholder {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: #111;
+    width: 100%; height: 100%;
     background: var(--surface);
     display: flex;
     align-items: center;
@@ -295,7 +299,6 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
   }
-
   .play-icon {
     width: 40px; height: 40px;
     border: 1px solid var(--grey);
@@ -312,25 +315,17 @@
     border-color: transparent transparent transparent var(--grey);
     margin-left: 3px;
   }
-
-  .video-item:hover .play-icon {
-    border-color: var(--black);
-  }
+  .video-item:hover .play-icon { border-color: var(--black); }
   .video-item:hover .play-icon::after {
     border-color: transparent transparent transparent var(--black);
   }
 
   /* ── SECTION ABOUT ── */
-  #about {
-    padding-bottom: 80px;
-  }
-
-  .about-content {
-    padding: 0 20px;
-  }
+  #about { padding-bottom: 80px; }
+  .about-content { padding: 0 20px; }
 
   .about-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: clamp(52px, 7vw, 110px);
     line-height: 0.95;
@@ -338,11 +333,7 @@
     color: var(--black);
     margin-bottom: 60px;
   }
-
-  .about-title em {
-    font-style: italic;
-    color: var(--grey);
-  }
+  .about-title em { font-style: italic; color: var(--grey); }
 
   .about-body {
     display: grid;
@@ -350,129 +341,27 @@
     gap: 20px 60px;
     max-width: 800px;
   }
-
   .about-body p {
-    font-family: 'Space Mono', monospace;
     font-size: 10px;
     line-height: 1.9;
     color: var(--grey);
   }
-
   .about-body .about-closing {
     grid-column: 1 / -1;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 22px;
     line-height: 1.4;
     color: var(--black);
-    border-top: 1px solid rgba(255,255,255,0.07);
     border-top: 1px solid var(--border);
     padding-top: 32px;
     margin-top: 12px;
   }
 
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Délais en cascade pour les colonnes */
-  .grid-col:nth-child(2) .grid-item { transition-delay: 0.1s; }
-
-  /* ── SECTION FADE TRANSITION ── */
-  section {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── PROJECT NAME HOVER ── */
-  .grid-item, .grid-first {
-    position: relative;
-  }
-  .project-name {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .project-name span {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 16px;
-    letter-spacing: 0.12em;
-    color: #f5f2ec;
-    color: var(--black);
-    text-transform: uppercase;
-  }
-  .grid-item:hover .project-name,
-  .grid-first:hover .project-name {
-    opacity: 1;
-  }
-
-  /* ── TYPEWRITER NAV ── */
-  nav ul li a .char {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-  nav ul li a .char.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── GRAYSCALE IMAGES ── */
-  /* ── GRAYSCALE & PARALLAX ── */
-  .grid-item img,
-  .grid-first img {
-    filter: grayscale(100%);
-    transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-  }
-  .grid-item:hover img,
-  .grid-first:hover img {
-    filter: grayscale(0%);
-  }
-
-  /* ── PARALLAX ── */
-  .grid-item,
-  .grid-first {
-    overflow: hidden;
-  }
-  .grid-item img,
-  .grid-first img {
-    will-change: transform;
-  }
-
   /* ── SECTION WEB ── */
-  #web {
-    padding-bottom: 80px;
-  }
-
-  .web-content {
-    padding: 0 20px;
-  }
-
-  .web-hero {
-    margin-bottom: 60px;
-  }
+  #web { padding-bottom: 80px; }
+  .web-content { padding: 0 20px; }
+  .web-hero { margin-bottom: 60px; }
 
   .web-eyebrow {
     display: block;
@@ -482,125 +371,105 @@
     color: var(--grey);
     margin-bottom: 24px;
   }
-
   .web-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: clamp(56px, 8vw, 120px);
     line-height: 0.92;
     letter-spacing: -0.01em;
     color: var(--black);
   }
-
   .web-title em {
     font-style: italic;
     color: var(--grey);
     font-size: 1.1em;
   }
-
   .web-body {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr 1fr;
     gap: 40px;
     align-items: start;
-    border-top: 1px solid rgba(255,255,255,0.07);
     border-top: 1px solid var(--border);
     padding-top: 40px;
     margin-bottom: 48px;
   }
-
   .web-statement {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: 20px;
     line-height: 1.6;
     color: var(--grey);
   }
-
   .web-manifesto {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-
   .web-manifesto p {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 28px;
     line-height: 1.2;
     color: var(--black);
   }
-
   .web-manifesto-sub {
-    font-style: normal !important;
-    font-size: 11px !important;
-    font-family: 'Space Mono', monospace !important;
-    color: var(--grey) !important;
-    line-height: 1.8 !important;
     font-style: normal;
     font-size: 11px;
-    font-family: 'Space Mono', monospace;
     color: var(--grey);
     line-height: 1.8;
   }
-
   .web-services {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
-
   .web-service-item {
     display: flex;
     align-items: baseline;
     gap: 14px;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid var(--border);
   }
-
   .web-service-num {
     font-size: 8px;
     letter-spacing: 0.15em;
     color: var(--grey);
-    font-family: 'Space Mono', monospace;
     flex-shrink: 0;
   }
-
   .web-service-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-weight: 300;
     font-size: 18px;
     color: var(--black);
     letter-spacing: 0.05em;
   }
 
+  /* ── TICKER ── */
   .web-footer-line {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    overflow: hidden;
+  }
+  .web-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 12s linear infinite;
+  }
+  .web-ticker-track span {
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--grey);
-    border-top: 1px solid rgba(255,255,255,0.07);
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
+    white-space: nowrap;
+    padding-right: 4em;
   }
-
-  /* Mobile web */
-  @media (max-width: 768px) {
-    .web-body {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   /* ── SECTION CONTACT ── */
-  #contact {
-    padding-bottom: 100px;
-  }
-
-  .contact-content {
-    padding: 0 20px;
-  }
+  #contact { padding-bottom: 100px; }
+  .contact-content { padding: 0 20px; }
 
   .contact-cta {
     display: inline-block;
@@ -609,7 +478,6 @@
     text-transform: uppercase;
     color: var(--white);
     background: var(--black);
-    border: 1px solid rgba(245,242,236,0.2);
     border: 1px solid var(--black-subtle);
     padding: 14px 32px;
     text-decoration: none;
@@ -620,7 +488,6 @@
     background: transparent;
     color: var(--black);
   }
-
   .contact-email-small {
     margin-top: 12px;
     font-size: 9px;
@@ -628,20 +495,18 @@
     color: var(--grey);
     text-transform: lowercase;
   }
+
+  /* ── SCROLL INDICATOR ── */
   .scroll-indicator {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 0; top: 0;
     width: 2px;
     height: 100vh;
-    background: rgba(255,255,255,0.06);
     background: var(--border);
     z-index: 200;
   }
   .scroll-indicator-bar {
     width: 100%;
-    background: rgba(245,242,236,0.4);
-    height: 0%;
     background: var(--black-faint);
     height: 0;
     transition: height 0.1s linear;
@@ -658,7 +523,19 @@
     transform: translateY(0);
   }
 
-  /* Desktop — hamburger et header mobile cachés */
+  /* ── TYPEWRITER NAV ── */
+  nav ul li a .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  nav ul li a .char.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── DESKTOP — masquer éléments mobile ── */
   .hamburger { display: none; }
   .mobile-header { display: none; }
 
@@ -667,7 +544,6 @@
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
 
-    /* Hamburger button */
     .hamburger {
       display: flex;
       flex-direction: column;
@@ -688,23 +564,18 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    /* Sidebar mobile — plein écran caché par défaut */
     aside {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100vw; height: 100vh;
       transform: translateX(-100%);
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       z-index: 400;
       padding: 80px 40px 40px;
       border-right: none;
     }
-    aside.open {
-      transform: translateX(0);
-    }
+    aside.open { transform: translateX(0); }
 
-    /* Logo mobile en haut */
     .mobile-header {
       display: flex;
       align-items: center;
@@ -713,54 +584,20 @@
       height: 64px;
       padding: 0 24px;
       background: var(--white);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
       border-bottom: 1px solid var(--border);
       z-index: 300;
     }
-    .mobile-header img {
-      width: 90px;
-    }
+    .mobile-header img { width: 90px; }
 
-    /* Main — pas de margin sidebar */
-    main {
-      margin-left: 0;
-      padding-top: 64px;
-    }
+    main { margin-left: 0; padding-top: 64px; }
 
-    /* Grille 1 colonne */
-    .grid-cols {
-      grid-template-columns: 1fr;
-    }
-
-    /* Video grid 1 colonne */
-    .video-grid {
-      grid-template-columns: 1fr;
-    }
-
-    /* About title plus petit */
-    .about-title {
-      font-size: clamp(36px, 10vw, 64px);
-    }
-    .about-body {
-      grid-template-columns: 1fr;
-    }
-
-    /* Web section 1 colonne */
+    .grid-cols { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .about-title { font-size: clamp(36px, 10vw, 64px); }
+    .about-body { grid-template-columns: 1fr; }
     .web-body { grid-template-columns: 1fr; gap: 32px; }
-
-    /* Scroll indicator caché */
     .scroll-indicator { display: none; }
-
-    /* Splash logo plus petit */
     #splash img { width: 120px; }
-  }
-
-  /* Desktop — hamburger caché */
-  .hamburger { display: none; }
-  .mobile-header { display: none; }
-  .grid-first, .grid-item, .video-item {
-    opacity: 0;
-    animation: none;
   }
 </style>
 </head>
@@ -771,16 +608,12 @@
   <span class="splash-tag">Creative Agency</span>
 </div>
 
-<!-- Header mobile -->
 <div class="mobile-header">
   <img src="logo.png" alt="From Nowhere">
 </div>
 
-<!-- Hamburger -->
 <div class="hamburger" id="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
+  <span></span><span></span><span></span>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -789,13 +622,11 @@
 
 <div class="page">
 
-  <!-- ═══ SIDEBAR ═══ -->
   <aside>
     <div class="logo">
       <img src="logo.png" alt="From Nowhere">
       <span class="logo-tag">Creative Agency</span>
     </div>
-
     <nav>
       <span class="nav-label">Work</span>
       <ul>
@@ -808,7 +639,6 @@
         <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
     </nav>
-
     <div class="sidebar-footer">
       <a href="#">Ig</a>
       <a href="#">Be</a>
@@ -817,19 +647,15 @@
     </div>
   </aside>
 
-  <!-- ═══ MAIN ═══ -->
   <main>
 
-    <!-- ── SECTION ARTWORK ── -->
     <section id="artwork">
       <div class="section-label">Artwork</div>
       <div class="grid">
-
         <a href="javascript:void(0)" class="grid-first">
           <img src="1.jpg" alt="Projet 1">
           <div class="project-name"><span>Project 01</span></div>
         </a>
-
         <div class="grid-cols">
           <div class="grid-col">
             <a href="javascript:void(0)" class="grid-item"><img src="2.jpg" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></a>
@@ -845,56 +671,39 @@
             <a href="javascript:void(0)" class="grid-item"><img src="9.jpg" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></a>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ── SECTION MOTION ── -->
     <section id="motion">
       <div class="section-label">Motion</div>
       <div class="video-grid">
-
-        <!-- Remplace src par ton lien YouTube/Vimeo ou chemin local -->
         <div class="video-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/R8o8cWErI5M" allowfullscreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/R8o8cWErI5M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>
-
         <div class="video-item">
           <div class="video-wrapper">
             <iframe src="https://www.youtube-nocookie.com/embed/d68toBv-wqo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>
-
         <div class="video-item">
           <div class="video-wrapper">
-            <div class="video-placeholder">
-              <div class="play-icon"></div>
-              <span>Video 03</span>
-            </div>
+            <div class="video-placeholder"><div class="play-icon"></div><span>Video 03</span></div>
           </div>
         </div>
-
         <div class="video-item">
           <div class="video-wrapper">
-            <div class="video-placeholder">
-              <div class="play-icon"></div>
-              <span>Video 04</span>
-            </div>
+            <div class="video-placeholder"><div class="play-icon"></div><span>Video 04</span></div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ── SECTION ABOUT ── -->
     <section id="about">
       <div class="section-label">About</div>
       <div class="about-content">
-
         <h2 class="about-title">We create<br>from <em>nowhere.</em></h2>
-
         <div class="about-body">
           <p>From Nowhere is an independent creative collective based in Paris.</p>
           <p>We are five — from music, photography, marketing, UX design and product design. Different worlds, one vision.</p>
@@ -902,94 +711,65 @@
           <p>Our work is rooted in an analog aesthetic — film grain, lens blur, raw textures, embraced imperfections. In a world saturated with clean digital, we choose the warmth of the real.</p>
           <p class="about-closing">From Nowhere is creating from nothing. Turning an idea into an image, an image into an identity.</p>
         </div>
-
       </div>
     </section>
 
-    <!-- ── SECTION WEB ── -->
     <section id="web">
       <div class="section-label">Web</div>
       <div class="web-content">
-
         <div class="web-hero">
           <span class="web-eyebrow">Web Design &amp; Development</span>
           <h2 class="web-title">Built from<br>scratch.<br><em>Always.</em></h2>
         </div>
-
         <div class="web-body">
-
           <div class="web-statement">
             We design and build custom websites for brands and artists who want a real digital presence — not a template.
           </div>
-
           <div class="web-manifesto">
             <p>No Squarespace.<br>No Wix.<br>No shortcuts.</p>
             <p class="web-manifesto-sub">Just clean code, deliberate design,<br>and full creative control.</p>
           </div>
-
           <div class="web-services">
-            <div class="web-service-item">
-              <span class="web-service-num">01</span>
-              <span class="web-service-name">Landing Pages</span>
-            </div>
-            <div class="web-service-item">
-              <span class="web-service-num">02</span>
-              <span class="web-service-name">Portfolio Sites</span>
-            </div>
-            <div class="web-service-item">
-              <span class="web-service-num">03</span>
-              <span class="web-service-name">Artist Pages</span>
-            </div>
-            <div class="web-service-item">
-              <span class="web-service-num">04</span>
-              <span class="web-service-name">Brand Websites</span>
-            </div>
-            <div class="web-service-item">
-              <span class="web-service-num">05</span>
-              <span class="web-service-name">One-Pagers</span>
-            </div>
+            <div class="web-service-item"><span class="web-service-num">01</span><span class="web-service-name">Landing Pages</span></div>
+            <div class="web-service-item"><span class="web-service-num">02</span><span class="web-service-name">Portfolio Sites</span></div>
+            <div class="web-service-item"><span class="web-service-num">03</span><span class="web-service-name">Artist Pages</span></div>
+            <div class="web-service-item"><span class="web-service-num">04</span><span class="web-service-name">Brand Websites</span></div>
+            <div class="web-service-item"><span class="web-service-num">05</span><span class="web-service-name">One-Pagers</span></div>
           </div>
-
         </div>
-
         <div class="web-footer-line">
-          Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.
+          <div class="web-ticker-track">
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+            <span>Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you.</span>
+          </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ── SECTION CONTACT ── -->
     <section id="contact">
       <div class="section-label">Contact</div>
       <div class="contact-content">
-
         <div>
-          <a href="/cdn-cgi/l/email-protection#0764686973666473476175686a6968706f62756229696273" class="contact-cta">Work with us</a>
-          <p class="contact-email-small"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a7975746e7b796e5a7c68757774756d727f687f34747f6e">[email&#160;protected]</a></p>
           <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
           <p class="contact-email-small">contact@fromnowhere.net</p>
         </div>
-
       </div>
     </section>
 
   </main>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 <script>
-  // ── Hamburger menu
+  // ── Hamburger
   const hamburger = document.getElementById('hamburger');
   const sidebar = document.querySelector('aside');
-
   if (hamburger) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('open');
       sidebar.classList.toggle('open');
     });
-
-    // Ferme le menu au clic sur un lien
     document.querySelectorAll('nav a').forEach(a => {
       a.addEventListener('click', () => {
         hamburger.classList.remove('open');
@@ -998,31 +778,27 @@
     });
   }
 
-  // ── Splash screen
-  const splash = document.getElementById('splash');
+  // ── Splash
+  const splash    = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
-  const splashTag = document.querySelector('.splash-tag');
-
+  const splashTag  = document.querySelector('.splash-tag');
   splashLogo.classList.add('show');
   splashTag.classList.add('show');
-
-  setTimeout(() => {
-    splash.classList.add('hide');
-  }, 2000);
+  setTimeout(() => splash.classList.add('hide'), 2000);
 
   // ── Scroll indicator
   const scrollBar = document.getElementById('scrollBar');
   window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollBar.style.height = pct + '%';
-  });
+    const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    scrollBar.style.height = `${pct}%`;
+  }, { passive: true });
+
+  // ── isMobile
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   // ── Parallax
-  // ── Parallax (desktop only)
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const parallaxItems = document.querySelectorAll('.grid-item img, .grid-first img');
+  const parallaxItems = isMobile ? [] : document.querySelectorAll('.grid-item img, .grid-first img');
 
   function applyParallax() {
     parallaxItems.forEach(img => {
@@ -1033,28 +809,22 @@
     });
   }
 
-  // Override hover scale with parallax
-  document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      el.querySelector('img').style.transition = 'filter 0.5s ease';
-    });
-    el.addEventListener('mouseleave', () => {
-      el.querySelector('img').style.transition = 'filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    });
-  });
-
-  window.addEventListener('scroll', applyParallax, { passive: true });
-  applyParallax();
   if (!isMobile) {
+    document.querySelectorAll('.grid-item, .grid-first').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.querySelector('img').style.transition = 'filter 0.5s ease';
+      });
+      el.addEventListener('mouseleave', () => {
+        el.querySelector('img').style.transition = 'filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+    });
     window.addEventListener('scroll', applyParallax, { passive: true });
     applyParallax();
   }
 
   // ── Typewriter nav
-  const navItems = document.querySelectorAll('nav ul li a');
-  let globalDelay = 200; // délai de départ global
-
-  navItems.forEach(link => {
+  let globalDelay = 200;
+  document.querySelectorAll('nav ul li a').forEach(link => {
     const text = link.textContent;
     link.textContent = '';
     [...text].forEach((char, i) => {
@@ -1062,14 +832,9 @@
       span.className = 'char';
       span.textContent = char === ' ' ? '\u00A0' : char;
       link.appendChild(span);
-    });
-
-    // Révèle les lettres une par une
-    [...link.querySelectorAll('.char')].forEach((span, i) => {
       setTimeout(() => span.classList.add('show'), globalDelay + i * 40);
     });
-
-    globalDelay += text.length * 40 + 80; // décale le prochain lien
+    globalDelay += text.length * 40 + 80;
   });
 
   // ── Cursor
@@ -1077,56 +842,44 @@
   const ring   = document.getElementById('ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-  });
-
-  (function tick() {
-    rx += (mx - rx) * 0.1;
-    ry += (my - ry) * 0.1;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(tick);
-  })();
   if (!isMobile) {
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = `${mx}px`;
+      cursor.style.top  = `${my}px`;
+    });
     (function tick() {
       rx += (mx - rx) * 0.1;
       ry += (my - ry) * 0.1;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
+      ring.style.left = `${rx}px`;
+      ring.style.top  = `${ry}px`;
       requestAnimationFrame(tick);
     })();
+    document.querySelectorAll('.grid-item, .grid-first, .video-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '56px';
+        ring.style.height = '56px';
+        ring.style.opacity = '0.3';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '30px';
+        ring.style.height = '30px';
+        ring.style.opacity = '1';
+      });
+    });
   }
 
-  document.querySelectorAll('.grid-item, .grid-first, .video-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '56px';
-      ring.style.height = '56px';
-      ring.style.opacity = '0.3';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '30px';
-      ring.style.height = '30px';
-      ring.style.opacity = '1';
-    });
-  });
-
-  // ── Nav scroll + active
-  document.querySelectorAll('nav a[data-section]').forEach(a => {
+  // ── Nav active
+  const navLinks = document.querySelectorAll('nav a[data-section]');
+  navLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
       const target = document.getElementById(a.dataset.section);
       if (target) target.scrollIntoView({ behavior: 'smooth' });
-      document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+      navLinks.forEach(x => x.classList.remove('active'));
       a.classList.add('active');
     });
   });
-
-  // ── Active nav on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[data-section]');
 
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -1136,29 +889,22 @@
         });
       }
     });
-  }, { threshold: 0.2 });
   }, { threshold: 0.15 });
+  document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
 
-  sections.forEach(s => sectionObserver.observe(s));
-
-  // ── Scroll reveal — containers only, not images (parallax handles those)
-  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body');
-  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-hero, .web-body, .web-footer-line');
-
+  // ── Scroll reveal
+  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-hero, .web-body');
   const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
-        }, 60);
         }, i * 60);
         revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08 });
-
   revealItems.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -1167,17 +913,14 @@
   });
 
   // ── Section fade
-  const sectionFadeObserver = new IntersectionObserver(entries => {
   const sectionFadeObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
         obs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.05 });
-
   document.querySelectorAll('section').forEach(s => sectionFadeObserver.observe(s));
 </script>
 </body>
