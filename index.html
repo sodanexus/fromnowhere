@@ -3,11 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="From Nowhere — Independent creative agency based in Paris. Visual identities, motion, and custom web design for brands and artists.">
-<meta property="og:title" content="From Nowhere — Agency">
-<meta property="og:description" content="Independent creative agency based in Paris. Visual identities, motion, and custom web design.">
+
+<!-- ── SEO BASE ── -->
+<title>From Nowhere — Creative Agency Paris</title>
+<meta name="description" content="From Nowhere is an independent creative agency based in Paris. We craft visual identities, motion design, and custom websites for brands and artists.">
+<meta name="keywords" content="creative agency paris, visual identity, motion design, web design paris, branding, art direction, from nowhere">
+<meta name="author" content="From Nowhere">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fromnowhere.fr/">
+
+<!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp...) ── -->
 <meta property="og:type" content="website">
-<title>FROM NOWHERE — Agency</title>
+<meta property="og:site_name" content="From Nowhere">
+<meta property="og:title" content="From Nowhere — Creative Agency Paris">
+<meta property="og:description" content="Independent creative agency based in Paris. Visual identities, motion design, and custom websites for brands and artists who refuse the ordinary.">
+<meta property="og:url" content="https://fromnowhere.fr/">
+<meta property="og:image" content="https://fromnowhere.fr/1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- ── TWITTER CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From Nowhere — Creative Agency Paris">
+<meta name="twitter:description" content="Independent creative agency based in Paris. Visual identities, motion design, and custom websites for brands and artists who refuse the ordinary.">
+<meta name="twitter:image" content="https://fromnowhere.fr/1.jpg">
+
+<!-- ── SCHEMA.ORG (Google rich results) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "From Nowhere",
+  "description": "Independent creative agency based in Paris. Visual identities, motion design, and custom websites for brands and artists.",
+  "url": "https://fromnowhere.fr",
+  "logo": "https://fromnowhere.fr/logo.png",
+  "image": "https://fromnowhere.fr/1.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Paris",
+    "addressCountry": "FR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/fromnowhererecords/"
+  ],
+  "email": "fromnowhere@ik.me",
+  "knowsAbout": ["Visual Identity", "Motion Design", "Web Design", "Branding", "Art Direction"]
+}
+</script>
+
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -204,87 +250,8 @@
     margin-bottom: 20px;
   }
 
-  /* ── BUTTON RESET (grid items) ── */
-  button.grid-first,
-  button.grid-item {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
   /* ── GRILLE ARTWORK ── */
   #artwork, #motion { padding-bottom: 60px; }
-  .grid { padding: 0 20px 20px; }
-
-  .grid-first {
-    display: block;
-    overflow: hidden;
-    cursor: none;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .grid-first img,
-  .grid-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .grid-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-  }
-  .grid-col {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .grid-item {
-    display: block;
-    overflow: hidden;
-    cursor: none;
-    position: relative;
-  }
-
-  /* ── GRAYSCALE & PARALLAX ── */
-  .grid-first img,
-  .grid-item img {
-    filter: grayscale(100%);
-    transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-  }
-  .grid-first:hover img,
-  .grid-item:hover img { filter: none; }
-
-  /* ── PROJECT NAME HOVER ── */
-  .project-name {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .project-name span {
-    font-family: var(--font-serif);
-    font-weight: 300;
-    font-size: 16px;
-    letter-spacing: 0.12em;
-    color: var(--black);
-    text-transform: uppercase;
-  }
-  .grid-first:hover .project-name,
-  .grid-item:hover .project-name { opacity: 1; }
 
   /* ── SECTION MOTION ── */
   .video-grid {
@@ -405,115 +372,9 @@
     color: var(--grey);
     font-size: 1.1em;
   }
-  .web-body {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr 1fr;
-    gap: 40px;
-    align-items: start;
-    border-top: 1px solid var(--border);
-    padding: 40px 20px 0;
-    margin-bottom: 48px;
-  }
-  .web-statement {
-    font-family: var(--font-serif);
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 1.6;
-    color: var(--grey);
-  }
-  .web-manifesto {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .web-manifesto p {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 28px;
-    line-height: 1.2;
-    color: var(--black);
-  }
-  .web-manifesto-sub {
-    font-family: var(--font-mono);
-    font-style: normal;
-    font-size: 11px;
-    color: var(--grey);
-    line-height: 1.8;
-  }
-  .web-service-item {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .web-service-num {
-    font-size: 8px;
-    letter-spacing: 0.15em;
-    color: var(--grey);
-    flex-shrink: 0;
-  }
-  .web-service-name {
-    font-family: var(--font-serif);
-    font-weight: 300;
-    font-size: 18px;
-    color: var(--black);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── TICKER ── */
-  .web-footer-line {
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-    overflow: hidden;
-  }
-  .web-ticker-track {
-    display: flex;
-    width: max-content;
-    will-change: transform;
-    animation: ticker var(--ticker-duration, 20s) linear infinite;
-  }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to   { transform: translateX(var(--ticker-offset, -50%)); }
-  }
-  .web-ticker-track span {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--grey);
-    white-space: nowrap;
-    padding-right: 4em;
-  }
-
   /* ── SECTION CONTACT ── */
   #contact { padding-bottom: 100px; }
   .contact-content { padding: 0 20px; }
-
-  .contact-cta {
-    display: inline-block;
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: var(--black);
-    border: 1px solid var(--border);
-    padding: 14px 32px;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    cursor: none;
-  }
-  .contact-cta:hover {
-    background: transparent;
-    color: var(--black);
-  }
-  .contact-email-small {
-    margin-top: 12px;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--grey);
-    text-transform: lowercase;
-  }
 
   /* ── CUSTOM SCROLL INDICATOR ── */
   .scroll-tracker {
@@ -668,12 +529,329 @@
 
     main { margin-left: 0; padding-top: 64px; }
 
-    .grid-cols { grid-template-columns: 1fr; }
     .video-grid { grid-template-columns: 1fr; }
     .about-title { font-size: clamp(36px, 10vw, 64px); }
     .about-body { grid-template-columns: 1fr; }
-    .web-body { grid-template-columns: 1fr; gap: 32px; }
     #splash img { width: 120px; }
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .site-footer .footer-copy {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .site-footer .footer-location {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  @media (max-width: 768px) {
+    .site-footer {
+      margin-left: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+  /* ── SECTION MOTION BODY ── */
+  .motion-body {
+    padding: 0 20px 48px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .motion-statement {
+    font-size: 10px;
+    line-height: 2;
+    color: var(--grey);
+    max-width: 480px;
+    letter-spacing: 0.02em;
+    font-family: var(--font-mono);
+  }
+  /* ── WEB PREVIEWS ── */
+  .web-previews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 32px 20px 0;
+  }
+  .web-preview-item { position: relative; overflow: hidden; display: block; cursor: none; }
+  .web-preview-img { position: relative; overflow: hidden; }
+  .web-preview-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .web-preview-item:hover .web-preview-img img { filter: none; }
+  .web-preview-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .web-preview-overlay span {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: #f5f2ec;
+    text-transform: uppercase;
+  }
+  .web-preview-item:hover .web-preview-overlay { opacity: 1; }
+  @media (max-width: 768px) {
+    .web-previews { grid-template-columns: 1fr; }
+  }
+  /* ── CURSOR VIEW ── */
+  .cursor-label {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    mix-blend-mode: difference;
+  }
+  .cursor-label.visible { opacity: 1; }
+  .carousel-wrapper {
+    padding: 0 20px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    overflow: hidden;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(1.06);
+  }
+  .carousel-slide.active img {
+    transform: scale(1);
+  }
+  .carousel-wrapper:hover .carousel-slide img { filter: none; }
+
+  /* Flèches sur l'image */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 22px;
+    padding: 20px;
+    cursor: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 10;
+    mix-blend-mode: difference;
+  }
+  .carousel-arrow-prev { left: 28px; }
+  .carousel-arrow-next { right: 28px; }
+  .carousel-wrapper:hover .carousel-arrow { opacity: 1; }
+
+  /* Compteur flottant */
+  .carousel-counter-float {
+    position: absolute;
+    bottom: 76px;
+    right: 40px;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    color: var(--black);
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .carousel-wrapper:hover .carousel-counter-float { opacity: 1; }
+  /* ── TITLE REVEAL ── */
+  .web-title .title-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .web-title .title-line.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .web-title .title-line:nth-child(2) { transition-delay: 0.15s; }
+
+  /* ── ARTWORK FORMATS ── */
+  .artwork-formats {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .artwork-format-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .artwork-format-item.revealed { opacity: 1; transform: translateY(0); }
+  .artwork-format-num {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--grey);
+    flex-shrink: 0;
+  }
+  .artwork-format-name {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--black);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── GLITCH SPLASH ── */
+  @keyframes glitch1 {
+    0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(-3px, 0); }
+    20%       { clip-path: inset(30% 0 50% 0); transform: translate(3px, 0); }
+    40%       { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
+    60%       { clip-path: inset(80% 0 5% 0);  transform: translate(2px, 0); }
+    80%       { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 0); }
+  }
+  @keyframes glitch2 {
+    0%, 100% { clip-path: inset(50% 0 30% 0); transform: translate(3px, 0); }
+    20%       { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 0); }
+    40%       { clip-path: inset(75% 0 10% 0); transform: translate(2px, 0); }
+    60%       { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 0); }
+    80%       { clip-path: inset(90% 0 2% 0);  transform: translate(3px, 0); }
+  }
+  .splash-glitch-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .splash-glitch-wrap::before,
+  .splash-glitch-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('logo.png') center/contain no-repeat;
+    opacity: 0;
+  }
+  .splash-glitch-wrap::before {
+    filter: hue-rotate(90deg) saturate(3);
+    mix-blend-mode: screen;
+  }
+  .splash-glitch-wrap::after {
+    filter: hue-rotate(200deg) saturate(3);
+    mix-blend-mode: screen;
+  }
+  .splash-glitch-wrap.glitching::before {
+    opacity: 0.7;
+    animation: glitch1 0.15s steps(1) infinite;
+  }
+  .splash-glitch-wrap.glitching::after {
+    opacity: 0.7;
+    animation: glitch2 0.15s steps(1) infinite;
+  }
+
+  /* ── CONTACT FORM ── */
+  .contact-form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 560px;
+  }
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    transition: border-color 0.2s;
+  }
+  .contact-field:focus-within { border-color: var(--black-faint); }
+  .contact-field label {
+    font-size: 7px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+  .contact-field input,
+  .contact-field textarea {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--black);
+    resize: none;
+    cursor: none;
+  }
+  .contact-field textarea { min-height: 80px; line-height: 1.8; }
+  .contact-field input::placeholder,
+  .contact-field textarea::placeholder { color: var(--grey); opacity: 0.5; }
+  .contact-submit {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 14px 32px;
+    cursor: none;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+  .contact-submit:hover { background: transparent; color: var(--black); }
+  .contact-success {
+    display: none;
+    margin-top: 20px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
   }
 </style>
 </head>
@@ -682,7 +860,9 @@
 <a href="#artwork" class="skip-link">Aller au contenu</a>
 
 <div id="splash">
-  <img src="logo.png" alt="From Nowhere" id="splashLogo">
+  <div class="splash-glitch-wrap" id="splashGlitchWrap">
+    <img src="logo.png" alt="From Nowhere" id="splashLogo">
+  </div>
   <span class="splash-tag">Creative Agency</span>
 </div>
 
@@ -696,6 +876,7 @@
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="ring"></div>
+<div class="cursor-label" id="cursorLabel">View →</div>
 <div class="scroll-tracker" id="scrollTracker">
   <div class="scroll-dot active" data-target="artwork"><span class="scroll-dot-label">Artwork</span><span class="scroll-dot-pip"></span></div>
   <div class="scroll-dot" data-target="motion"><span class="scroll-dot-label">Motion</span><span class="scroll-dot-pip"></span></div>
@@ -709,7 +890,9 @@
 
   <aside>
     <div class="logo">
-      <img src="logo.png" alt="From Nowhere">
+      <div class="splash-glitch-wrap" id="sidebarGlitchWrap">
+        <img src="logo.png" alt="From Nowhere">
+      </div>
       <span class="logo-tag">Creative Agency</span>
     </div>
     <nav aria-label="Navigation principale">
@@ -725,10 +908,7 @@
       </ul>
     </nav>
     <div class="sidebar-footer">
-      <a href="#">Ig</a>
-      <a href="#">Be</a>
-      <a href="#">Ln</a>
-      <a href="#">Tw</a>
+      <a href="https://www.instagram.com/fromnowhererecords/" target="_blank" rel="noopener noreferrer">Ig</a>
     </div>
   </aside>
 
@@ -736,30 +916,51 @@
 
     <section id="artwork">
       <div class="section-label">Artwork</div>
-      <div class="grid">
-        <button type="button" class="grid-first" aria-label="Voir projet 01">
-          <img src="1.jpg" alt="Projet 1">
-          <div class="project-name"><span>Project 01</span></div>
-        </button>
-        <div class="grid-cols">
-          <div class="grid-col">
-            <button type="button" class="grid-item" aria-label="Voir projet 02"><img src="2.jpg" alt="Projet 2"><div class="project-name"><span>Project 02</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 04"><img src="4.jpg" alt="Projet 4"><div class="project-name"><span>Project 04</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 07"><img src="7.jpg" alt="Projet 7"><div class="project-name"><span>Project 07</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 08"><img src="8.jpg" alt="Projet 8"><div class="project-name"><span>Project 08</span></div></button>
-          </div>
-          <div class="grid-col">
-            <button type="button" class="grid-item" aria-label="Voir projet 03"><img src="3.jpg" alt="Projet 3"><div class="project-name"><span>Project 03</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 05"><img src="5.jpg" alt="Projet 5"><div class="project-name"><span>Project 05</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 06"><img src="6.jpg" alt="Projet 6"><div class="project-name"><span>Project 06</span></div></button>
-            <button type="button" class="grid-item" aria-label="Voir projet 09"><img src="9.jpg" alt="Projet 9"><div class="project-name"><span>Project 09</span></div></button>
-          </div>
+      <div class="web-hero">
+        <span class="web-eyebrow">Visual Identity &amp; Art Direction</span>
+        <h2 class="web-title"><span class="title-line">Images that speak.</span> <span class="title-line"><em>Loudly.</em></span></h2>
+      </div>
+      <div class="motion-body">
+        <div class="artwork-formats">
+          <div class="artwork-format-item"><span class="artwork-format-num">01</span><span class="artwork-format-name">Artist Covers</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">02</span><span class="artwork-format-name">Visual Identities</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">03</span><span class="artwork-format-name">Posters</span></div>
         </div>
+        <p class="motion-statement">We build visual languages for artists and brands — rooted in analog textures, film grain, and raw aesthetics. Every image is crafted to feel like something, not just look like something.</p>
+      </div>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="1.jpg" alt="Projet 1"></div>
+          <div class="carousel-slide"><img src="2.jpg" alt="Projet 2"></div>
+          <div class="carousel-slide"><img src="3.jpg" alt="Projet 3"></div>
+          <div class="carousel-slide"><img src="4.jpg" alt="Projet 4"></div>
+          <div class="carousel-slide"><img src="5.jpg" alt="Projet 5"></div>
+          <div class="carousel-slide"><img src="6.jpg" alt="Projet 6"></div>
+          <div class="carousel-slide"><img src="7.jpg" alt="Projet 7"></div>
+          <div class="carousel-slide"><img src="8.jpg" alt="Projet 8"></div>
+          <div class="carousel-slide"><img src="9.jpg" alt="Projet 9"></div>
+        </div>
+        <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Précédent">←</button>
+        <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Suivant">→</button>
+        <span class="carousel-counter-float"><span id="carouselCurrent">1</span> / 9</span>
       </div>
     </section>
 
     <section id="motion">
       <div class="section-label">Motion</div>
+      <div class="web-hero">
+        <span class="web-eyebrow">Visual Storytelling</span>
+        <h2 class="web-title"><span class="title-line">Moving images.</span> <span class="title-line"><em>Always.</em></span></h2>
+      </div>
+      <div class="motion-body">
+        <div class="artwork-formats">
+          <div class="artwork-format-item"><span class="artwork-format-num">01</span><span class="artwork-format-name">Canvas</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">02</span><span class="artwork-format-name">Teasers</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">03</span><span class="artwork-format-name">Reels</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">04</span><span class="artwork-format-name">Music Videos</span></div>
+        </div>
+        <p class="motion-statement">Every frame is a deliberate choice. Every cut has a reason. We create motion content for artists and brands who want their visuals to live — not just exist.</p>
+      </div>
       <div class="video-grid">
         <div class="video-item">
           <div class="video-wrapper">
@@ -771,46 +972,39 @@
             <iframe src="https://www.youtube-nocookie.com/embed/d68toBv-wqo" title="Vidéo From Nowhere 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
           </div>
         </div>
-        <div class="video-item">
-          <div class="video-wrapper">
-            <div class="video-placeholder"><div class="play-icon"></div><span>Video 03</span></div>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-wrapper">
-            <div class="video-placeholder"><div class="play-icon"></div><span>Video 04</span></div>
-          </div>
-        </div>
+
       </div>
     </section>
 
     <section id="web">
       <div class="section-label">Web</div>
       <div class="web-hero">
-          <span class="web-eyebrow">Web Design &amp; Development</span>
-          <h2 class="web-title">Built from<br>scratch.<br><em>Always.</em></h2>
-        </div>
-        <div class="web-body">
-          <div class="web-statement">
-            We design and build custom websites for brands and artists who want a real digital presence — not a template.
-          </div>
-          <div class="web-manifesto">
-            <p>No Squarespace.<br>No Wix.<br>No shortcuts.</p>
-            <p class="web-manifesto-sub">Just clean code, deliberate design,<br>and full creative control.</p>
-          </div>
-          <div class="web-services">
-            <div class="web-service-item"><span class="web-service-num">01</span><span class="web-service-name">Landing Pages</span></div>
-            <div class="web-service-item"><span class="web-service-num">02</span><span class="web-service-name">Portfolio Sites</span></div>
-            <div class="web-service-item"><span class="web-service-num">03</span><span class="web-service-name">Artist Pages</span></div>
-            <div class="web-service-item"><span class="web-service-num">04</span><span class="web-service-name">Brand Websites</span></div>
-            <div class="web-service-item"><span class="web-service-num">05</span><span class="web-service-name">One-Pagers</span></div>
-          </div>
-        </div>
-        <div class="web-footer-line">
-          <div class="web-ticker-track">
-            <span class="web-ticker-item">Fast. Minimal. Intentional. Built to load quickly, look sharp, and feel like you. &nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </div>
+        <span class="web-eyebrow">Code &amp; Creative</span>
+        <h2 class="web-title"><span class="title-line">Built from scratch.</span> <span class="title-line"><em>Always.</em></span></h2>
       </div>
+      <div class="motion-body">
+        <div class="artwork-formats">
+          <div class="artwork-format-item"><span class="artwork-format-num">01</span><span class="artwork-format-name">Landing Pages</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">02</span><span class="artwork-format-name">Portfolio Sites</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">03</span><span class="artwork-format-name">Artist Pages</span></div>
+          <div class="artwork-format-item"><span class="artwork-format-num">04</span><span class="artwork-format-name">One-Pagers</span></div>
+        </div>
+        <p class="motion-statement">We design and build custom websites for brands and artists who want a real digital presence — not a template. No Squarespace. No Wix. No shortcuts.</p>
+      </div>
+        <div class="web-previews">
+          <a href="https://www.viqmusic.net" target="_blank" rel="noopener noreferrer" class="web-preview-item">
+            <div class="web-preview-img">
+              <img src="web1.jpg" alt="Web project 01">
+              <div class="web-preview-overlay"><span>Artist Website</span></div>
+            </div>
+          </a>
+          <a href="https://go.viqmusic.net/sublime" target="_blank" rel="noopener noreferrer" class="web-preview-item">
+            <div class="web-preview-img">
+              <img src="web2.jpg" alt="Web project 02">
+              <div class="web-preview-overlay"><span>Landing Page</span></div>
+            </div>
+          </a>
+        </div>
     </section>
 
     <section id="about">
@@ -825,16 +1019,39 @@
 
     <section id="contact">
       <div class="section-label">Contact</div>
+      <div class="web-hero">
+        <span class="web-eyebrow">Get in touch</span>
+        <h2 class="web-title"><span class="title-line">Work with</span> <span class="title-line"><em>us.</em></span></h2>
+      </div>
       <div class="contact-content">
-        <a href="mailto:contact@fromnowhere.net" class="contact-cta">Work with us</a>
-        <p class="contact-email-small"><span>contact@fromnowhere.net</span></p>
+        <div class="contact-form" id="contactForm">
+          <div class="contact-field">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" placeholder="Your name" autocomplete="off">
+          </div>
+          <div class="contact-field">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" placeholder="your@email.com" autocomplete="off">
+          </div>
+          <div class="contact-field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="button" class="contact-submit" id="contactSubmit">Send →</button>
+          <p class="contact-success" id="contactSuccess">Message sent — we'll get back to you soon.</p>
+        </div>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <span class="footer-copy">© 2026 From Nowhere — All rights reserved</span>
+      <span class="footer-location">Paris, France</span>
+    </footer>
 
   </main>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Hamburger
   const hamburger = document.getElementById('hamburger');
   const sidebar = document.querySelector('aside');
@@ -862,21 +1079,82 @@
   const splash     = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
   const splashTag  = document.querySelector('.splash-tag');
+  const glitchWrap = document.getElementById('splashGlitchWrap');
   if (splashLogo) splashLogo.classList.add('show');
   if (splashTag)  splashTag.classList.add('show');
-  if (splash)     setTimeout(() => { splash.classList.add('hide'); splash.style.pointerEvents = 'none'; }, 2000);
+
+  // Glitch burst avant la disparition
+  if (glitchWrap) {
+    setTimeout(() => glitchWrap.classList.add('glitching'), 1200);
+    setTimeout(() => glitchWrap.classList.remove('glitching'), 1600);
+    setTimeout(() => glitchWrap.classList.add('glitching'), 1650);
+    setTimeout(() => glitchWrap.classList.remove('glitching'), 1800);
+  }
+  if (splash) setTimeout(() => { splash.classList.add('hide'); splash.style.pointerEvents = 'none'; }, 2000);
+
+  // ── Random glitch on sidebar logo
+  const sidebarGlitch = document.getElementById('sidebarGlitchWrap');
+  if (sidebarGlitch) {
+    function triggerGlitch() {
+      sidebarGlitch.classList.add('glitching');
+      setTimeout(() => sidebarGlitch.classList.remove('glitching'), 150);
+      setTimeout(() => {
+        sidebarGlitch.classList.add('glitching');
+        setTimeout(() => sidebarGlitch.classList.remove('glitching'), 100);
+      }, 200);
+      // Prochain glitch dans 4 à 10 secondes
+      setTimeout(triggerGlitch, 4000 + Math.random() * 6000);
+    }
+    setTimeout(triggerGlitch, 3000 + Math.random() * 4000);
+  }
+  const contactSubmit = document.getElementById('contactSubmit');
+  const contactSuccess = document.getElementById('contactSuccess');
+  if (contactSubmit) {
+    contactSubmit.addEventListener('click', async () => {
+      const name    = document.getElementById('contact-name').value.trim();
+      const email   = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+      if (!name || !email || !message) return;
+
+      contactSubmit.textContent = 'Sending...';
+      contactSubmit.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/mgonoawp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+        if (res.ok) {
+          contactSubmit.style.display = 'none';
+          if (contactSuccess) contactSuccess.style.display = 'block';
+          document.getElementById('contact-name').value = '';
+          document.getElementById('contact-email').value = '';
+          document.getElementById('contact-message').value = '';
+        } else {
+          contactSubmit.textContent = 'Send →';
+          contactSubmit.disabled = false;
+        }
+      } catch (e) {
+        contactSubmit.textContent = 'Send →';
+        contactSubmit.disabled = false;
+      }
+    });
+  }
 
   // ── isMobile
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   // ── Parallax (desktop uniquement)
   if (!isMobile) {
-    const parallaxItems = document.querySelectorAll('.grid-item img, .grid-first img');
+    const parallaxItems = document.querySelectorAll('.web-preview-img img');
     const applyParallax = () => {
       parallaxItems.forEach(img => {
-        const rect = img.closest('.grid-item, .grid-first').getBoundingClientRect();
+        const parent = img.closest('.web-preview-img');
+        if (!parent) return;
+        const rect = parent.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
-        const offset = (window.innerHeight / 2 - center) * 0.08;
+        const offset = (window.innerHeight / 2 - center) * 0.04;
         img.style.transform = `translateY(${offset}px) scale(1.1)`;
       });
     };
@@ -903,11 +1181,16 @@
   if (!isMobile) {
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('ring');
+    const cursorLabel = document.getElementById('cursorLabel');
     let mx = 0, my = 0, rx = 0, ry = 0;
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
       cursor.style.left = `${mx}px`;
       cursor.style.top  = `${my}px`;
+      if (cursorLabel) {
+        cursorLabel.style.left = `${mx + 20}px`;
+        cursorLabel.style.top  = `${my}px`;
+      }
     });
     (function tick() {
       rx += (mx - rx) * 0.1;
@@ -916,7 +1199,7 @@
       ring.style.top  = `${ry}px`;
       requestAnimationFrame(tick);
     })();
-    document.querySelectorAll('.grid-item, .grid-first, .video-item').forEach(el => {
+    document.querySelectorAll('.video-item').forEach(el => {
       el.addEventListener('mouseenter', () => {
         ring.style.width  = '56px';
         ring.style.height = '56px';
@@ -926,6 +1209,20 @@
         ring.style.width  = '30px';
         ring.style.height = '30px';
         ring.style.opacity = '1';
+      });
+    });
+    document.querySelectorAll('.web-preview-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        if (cursorLabel) cursorLabel.classList.add('visible');
+        cursor.style.opacity = '0';
+        ring.style.width  = '0px';
+        ring.style.height = '0px';
+      });
+      el.addEventListener('mouseleave', () => {
+        if (cursorLabel) cursorLabel.classList.remove('visible');
+        cursor.style.opacity = '1';
+        ring.style.width  = '30px';
+        ring.style.height = '30px';
       });
     });
   }
@@ -962,8 +1259,8 @@
   }, { threshold: 0.25 });
   document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
 
-  // ── Scroll reveal
-  const revealItems = document.querySelectorAll('.grid-first, .grid-item, .video-item, .about-title, .about-body, .web-eyebrow, .web-title, .web-statement, .web-manifesto, .web-services');
+  // ── Scroll reveal (general)
+  const revealItems = document.querySelectorAll('.video-item, .about-title, .about-body, .web-eyebrow, .motion-statement, .carousel-wrapper, .web-previews');
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -980,28 +1277,30 @@
     revealObserver.observe(el);
   });
 
-  // ── Ticker
-  (function() {
-    const track = document.querySelector('.web-ticker-track');
-    if (!track) return;
-    const item = track.querySelector('.web-ticker-item');
-    if (!item) return;
+  // ── Title reveal
+  const titleObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.title-line').forEach(line => line.classList.add('revealed'));
+        titleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.web-title').forEach(t => titleObserver.observe(t));
 
-    // Cloner jusqu'à avoir au moins 2x la largeur du conteneur
-    const containerW = track.parentElement.offsetWidth || window.innerWidth;
-    const itemW = item.offsetWidth;
-    if (!itemW) return;
-    const copies = Math.ceil((containerW * 2) / itemW) + 1;
-    for (let i = 1; i < copies; i++) {
-      track.appendChild(item.cloneNode(true));
-    }
-
-    // La moitié du track = un cycle complet
-    const halfW = track.scrollWidth / 2;
-    const duration = halfW / 60; // 60px/s
-    track.style.setProperty('--ticker-duration', duration + 's');
-    track.style.setProperty('--ticker-offset', '-' + halfW + 'px');
-  })();
+  // ── Stagger format items
+  const staggerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.artwork-format-item');
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add('revealed'), i * 120);
+        });
+        staggerObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.artwork-formats').forEach(f => staggerObserver.observe(f));
 
   // ── Back to top
   const backTop = document.getElementById('backTop');
@@ -1009,7 +1308,42 @@
     window.addEventListener('scroll', () => {
       backTop.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ── Carousel
+  const carouselTrack = document.getElementById('carouselTrack');
+  const btnPrev  = document.getElementById('carouselPrev');
+  const btnNext  = document.getElementById('carouselNext');
+  const counter  = document.getElementById('carouselCurrent');
+  const total    = carouselTrack ? carouselTrack.children.length : 0;
+  let current    = 0;
+
+  function goTo(index) {
+    const slides = carouselTrack ? carouselTrack.querySelectorAll('.carousel-slide') : [];
+    slides.forEach(s => s.classList.remove('active'));
+    current = (index + total) % total;
+    carouselTrack.style.transform = `translateX(-${current * 100}%)`;
+    if (counter) counter.textContent = current + 1;
+    if (slides[current]) slides[current].classList.add('active');
+  }
+  // Init first slide
+  if (carouselTrack) {
+    const firstSlide = carouselTrack.querySelector('.carousel-slide');
+    if (firstSlide) firstSlide.classList.add('active');
+  }
+  if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1));
+  if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1));
+
+  if (carouselTrack) {
+    let startX = 0;
+    carouselTrack.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    carouselTrack.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    }, { passive: true });
   }
 </script>
 </body>
