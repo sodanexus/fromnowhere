@@ -1001,22 +1001,22 @@
         <h2 class="web-title"><span class="title-line">Work with</span> <span class="title-line"><em>us.</em></span></h2>
       </div>
       <div class="contact-content">
-        <div class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" novalidate>
           <div class="contact-field">
             <label for="contact-name">Name</label>
-            <input type="text" id="contact-name" placeholder="Your name" autocomplete="off">
+            <input type="text" id="contact-name" placeholder="Your name" autocomplete="name" required>
           </div>
           <div class="contact-field">
             <label for="contact-email">Email</label>
-            <input type="email" id="contact-email" placeholder="your@email.com" autocomplete="off">
+            <input type="email" id="contact-email" placeholder="your@email.com" autocomplete="email" required>
           </div>
           <div class="contact-field">
             <label for="contact-message">Message</label>
-            <textarea id="contact-message" placeholder="Tell us about your project..."></textarea>
+            <textarea id="contact-message" placeholder="Tell us about your project..." required></textarea>
           </div>
-          <button type="button" class="contact-submit" id="contactSubmit">Send →</button>
+          <button type="submit" class="contact-submit" id="contactSubmit">Send →</button>
           <p class="contact-success" id="contactSuccess">Message sent — we'll get back to you soon.</p>
-        </div>
+        </form>
       </div>
     </section>
 
@@ -1028,7 +1028,7 @@
   </main>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── Cursor (initialisé immédiatement, avant le splash)
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   if (!isMobile) {
@@ -1108,13 +1108,6 @@
     });
   }
 
-  // ── Sidebar footer links (prevent scroll-to-top only for hash links)
-  document.querySelectorAll('.sidebar-footer a').forEach(a => {
-    if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
-      a.addEventListener('click', e => e.preventDefault());
-    }
-  });
-
   // ── Splash
   const splash     = document.getElementById('splash');
   const splashLogo = document.getElementById('splashLogo');
@@ -1147,10 +1140,12 @@
     }
     setTimeout(triggerGlitch, 3000 + Math.random() * 4000);
   }
+  const contactForm = document.getElementById('contactForm');
   const contactSubmit = document.getElementById('contactSubmit');
   const contactSuccess = document.getElementById('contactSuccess');
-  if (contactSubmit) {
-    contactSubmit.addEventListener('click', async () => {
+  if (contactForm && contactSubmit) {
+    contactForm.addEventListener('submit', async e => {
+      e.preventDefault();
       const name    = document.getElementById('contact-name').value.trim();
       const email   = document.getElementById('contact-email').value.trim();
       const message = document.getElementById('contact-message').value.trim();
@@ -1168,9 +1163,7 @@
         if (res.ok) {
           contactSubmit.style.display = 'none';
           if (contactSuccess) contactSuccess.style.display = 'block';
-          document.getElementById('contact-name').value = '';
-          document.getElementById('contact-email').value = '';
-          document.getElementById('contact-message').value = '';
+          contactForm.reset();
         } else {
           contactSubmit.textContent = 'Send →';
           contactSubmit.disabled = false;
@@ -1309,6 +1302,7 @@
   let current    = 0;
 
   function goTo(index) {
+    if (!carouselTrack || total === 0) return;
     const slides = carouselTrack ? carouselTrack.querySelectorAll('.carousel-slide') : [];
     slides.forEach(s => s.classList.remove('active'));
     current = (index + total) % total;
